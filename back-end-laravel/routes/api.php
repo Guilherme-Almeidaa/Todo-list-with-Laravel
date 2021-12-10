@@ -27,8 +27,11 @@ Route::group([
     Route::post('register', [AuthController::class,'register']);
     Route::match(array('GET', 'POST'),"login", [AuthController::class,'login'])->name('login');
     Route::post('logout', 'AuthController@logout');
+    Route::post('update', [AuthController::class,'update']);
     Route::post('refresh', 'AuthController@refresh');
     Route::post('me', [AuthController::class ,'me']);
+
+
 
 });
 

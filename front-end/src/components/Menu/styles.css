@@ -7,3 +7,20 @@
 .header-menu {
   width: 100%;
 }
+
+.cont-menu {
+  display: flex;
+  justify-content: space-between;
+}
+
+.name-user {
+  color: #dcdcdc;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.logout {
+  font-size: larger;
+  margin-left: 20px;
+}

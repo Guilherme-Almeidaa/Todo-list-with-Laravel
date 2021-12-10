@@ -3,13 +3,12 @@ import { exclude, getAll, register, search, update } from "../../api/todoApi";
 import Form from "../../components/Form";
 import Todo from "../../components/Todo";
 import TodoList from "../../components/TodoList";
-import Menu from "../../components/Menu";
 import { connect } from "react-redux";
 import cookie from "js-cookie";
 import "./styles.css";
 import { isLoadding } from "../../actions/todoList";
 
-function TodoPage({ selectTask, isFetching, isLoadding, setIsLoadding }) {
+function TodoPage({ selectTask, isLoadding, setIsLoadding }) {
   const [description, setDescription] = useState("");
   const [list, setList] = useState([]);
   const [edit, setEdit] = useState(false);
@@ -22,18 +21,14 @@ function TodoPage({ selectTask, isFetching, isLoadding, setIsLoadding }) {
   };
 
   const updateTask = (id, task) => {
-    setIsLoadding(true);
     const token = cookie.get("token");
-    console.log(token);
     update(id, task, token)
       .then((_response) => {
         searchTask();
         setEdit(false);
-        setIsLoadding(false);
       })
       .catch((error) => {
         console.log(error.response);
-        setIsLoadding(false);
       });
   };
 
@@ -76,11 +71,8 @@ function TodoPage({ selectTask, isFetching, isLoadding, setIsLoadding }) {
     });
   };
 
-  console.log(isLoadding);
-
   return (
     <div className="cont-page-todo">
-      <Menu />
       <Todo />
       <Form
         handlerAdd={handlerAdd}

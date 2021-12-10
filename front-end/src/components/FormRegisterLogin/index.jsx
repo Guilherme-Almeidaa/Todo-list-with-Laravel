@@ -1,11 +1,19 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import ErrorComponent from "../ErrorComponent";
 import "./style.css";
 
-function FormRegisterLogin({ title, tittleButton, register, handlerSubmit }) {
+function FormRegisterLogin({
+  title,
+  tittleButton,
+  register,
+  handlerSubmit,
+  userProps,
+  error,
+}) {
   const initialState = {
-    name: "",
-    email: "",
+    name: userProps ? userProps.name : "",
+    email: userProps ? userProps.email : "",
     password: "",
     confirmPassword: "",
   };
@@ -31,9 +39,14 @@ function FormRegisterLogin({ title, tittleButton, register, handlerSubmit }) {
             type="text"
             name="name"
             id="name"
+            value={user.name}
           />
           <div className="underline-login"></div>
         </div>
+        <ErrorComponent
+          hidden={!register && error.name}
+          error={error.name || null}
+        />
         <div className="cont-inputs-login">
           <label className="label-login" htmlFor="email">
             Email
@@ -44,10 +57,12 @@ function FormRegisterLogin({ title, tittleButton, register, handlerSubmit }) {
             type="email"
             name="email"
             id="email"
+            value={user.email}
           />
           <div className="underline-login"></div>
         </div>
-        <div className="cont-inputs-login">
+        <ErrorComponent hidden={!error.email} error={error.email || null} />
+        <div hidden={userProps} className="cont-inputs-login">
           <label className="label-login" htmlFor="password">
             Senha
           </label>
@@ -57,10 +72,15 @@ function FormRegisterLogin({ title, tittleButton, register, handlerSubmit }) {
             type="password"
             name="password"
             id="password"
+            value={user.password}
           />
           <div className="underline-login"></div>
         </div>
-        <div hidden={!register} className="cont-inputs-login">
+        <ErrorComponent
+          hidden={!error.password}
+          error={error.password || null}
+        />
+        <div hidden={!register || userProps} className="cont-inputs-login">
           <label className="label-login" htmlFor="password-confirm">
             Confirmar Senha
           </label>
@@ -70,6 +90,7 @@ function FormRegisterLogin({ title, tittleButton, register, handlerSubmit }) {
             type="password"
             name="confirmPassword"
             id="password-confirm"
+            value={user.confirmPassword}
           />
           <div className="underline-login"></div>
         </div>

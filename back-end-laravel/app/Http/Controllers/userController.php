@@ -25,7 +25,7 @@ class userController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -36,7 +36,7 @@ class userController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       return response(User::create($request->all()),201);
     }
 
     /**

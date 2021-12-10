@@ -27,3 +27,30 @@ export const requestUser = async (token) => {
     return response.data;
   });
 };
+
+export const updateUser = async (user, token) => {
+  const options = {
+    method: "POST",
+    url: `${URL}/auth/update`,
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    data: user,
+  };
+
+  return axios.request(options).then((response) => {
+    return response.data;
+  });
+};
+
+export const registerUser = async (user) => {
+  const options = {
+    method: "POST",
+    url: `${URL}/auth/register`,
+    data: user,
+  };
+
+  return axios.request(options).then((response) => {
+    return response.data;
+  });
+};
