@@ -1,0 +1,14 @@
+.icon-btn-edit {
+  background-color: #daa520;
+  color: #dcdcdc;
+  font-size: xx-large;
+  border-radius: 2px;
+  transition: 0.5s;
+  cursor: pointer;
+  box-shadow: 1px 1px 2px rgb(39, 38, 38);
+  margin: 5px;
+}
+
+.icon-btn-edit:hover {
+  background-color: #b8860b;
+}
